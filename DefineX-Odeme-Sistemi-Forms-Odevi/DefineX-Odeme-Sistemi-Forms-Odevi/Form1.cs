@@ -16,7 +16,23 @@ namespace DefineX_Odeme_Sistemi_Forms_Odevi
 
         private void btnGonder_Click(object sender, EventArgs e)
         {
-            
+            if (cmbOdemeTipi.SelectedItem == null)
+            {
+                MessageBox.Show("Lütfen bir ödeme yöntemi seçiniz.");
+                return;
+            }
+            decimal tutar;
+            if (decimal.TryParse(txtTutar.Text, out tutar))
+            {
+                IOdeme yontem = _odemeYontemleri[cmbOdemeTipi.SelectedItem.ToString()];
+                string sonuc = yontem.OdemeYap(tutar);
+                lblSonuc.Text = sonuc;
+            }
+            else
+            {
+                MessageBox.Show("Lütfen geçerli bir tutar giriniz.");
+                return;
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DefineX-Odeme-Sistemi-Forms-Odevi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d21668d3aaf4b599a6b90d8e52466d7f18911dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("DefineX-Odeme-Sistemi-Forms-Odevi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DefineX-Odeme-Sistemi-Forms-Odevi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

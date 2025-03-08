@@ -13,8 +13,10 @@ DefineX Odeme Sistemi, Windows Forms tabanlı ödeme işlemlerini yöneten, SOLI
   - **Label (lblSonuc):** İşlem sonucunu görüntüler.
 
 - **Veritabanı Entegrasyonu**
-  - SQL Server veritabanındaki `PaymentTypes` tablosundan ödeme yöntemleri okunur.
-  - Tablo, her ödeme yöntemi için `Display_member` (gösterilen isim) ve `Display_value` (sınıf adı) bilgilerini içerir.
+  - SQL Server veritabanındaki `PaymentTypes` tablosundan ödeme yöntemleri çekilir.
+  - `PaymentTypes` tablosu, her ödeme yöntemi için `Display_member` (öğenin gösterilen adı) ve `Display_value` (dinamik olarak oluşturulacak tipin sınıf adı) bilgilerini içerir.
+  - Entity Framework Core (EF Core) kullanılarak veritabanı işlemleri gerçekleştirilir.
+  - WinForms uygulamasında, App.config üzerinden merkezi olarak yönetilen connection string kullanılır.
 
 - **Dinamik Tip Oluşturma**
   - **OdemeFabrikasi** sınıfı, veritabanından gelen ödeme yöntemleri ile sistemdeki mevcut implementasyonları karşılaştırır.
@@ -24,6 +26,11 @@ DefineX Odeme Sistemi, Windows Forms tabanlı ödeme işlemlerini yöneten, SOLI
 - **Senkronizasyon**
   - Uygulama başlatıldığında (Form1_Load) ve ComboBox açıldığında (DropDown event) veritabanı ile senkronizasyon sağlanır.
   - Uygulama çalışırken, veritabanına yeni ödeme yöntemi eklenirse dinamik olarak senkronize edilir.
+
+- **Custom Attribute ile Validasyon**
+  - **ZorunluAlanAttribute:** Formdan alınan verilerde, boş (null, boş string veya sadece boşluk) değerleri kontrol eder.
+  - **SayiAlanAttribute:** Form verilerinde, girilen değerin sayı formatında olup olmadığını kontrol eder.
+  - Bu attribute'ler, model (ör. `OdemeModel`) üzerinde uygulanır ve form gönderiminde custom validasyon metotları aracılığıyla kontrol edilir.
 
 ---
 ## Class Diagram
@@ -37,7 +44,10 @@ DefineX_Payment_System/
 ├── DataAccess/ 
 │ └── OdemeRepository.cs // Veritabanı erişimi; PaymentTypes tablosundan veri çekme 
 ├── Interfaces/ 
-│ └── IOdeme.cs // Tüm ödeme yöntemlerinin uygulaması gereken arayüz 
+│ └── IOdeme.cs // Tüm ödeme yöntemlerinin uygulaması gereken arayüz
+├── Attributes/
+│ ├── ZorunluAlanAttribute.cs // Boş (null/boş string) kontrolü için custom attribute
+│ └── SayiAlanAttribute.cs // Sayı formatı kontrolü için custom attribute
 ├── Models/ 
 │ ├── KrediKartiOdeme.cs // Örnek olarak önceden tanımlı ödeme yöntemi 
 │ └── (Dinamik oluşturulan ödeme yöntemi .cs dosyaları) 

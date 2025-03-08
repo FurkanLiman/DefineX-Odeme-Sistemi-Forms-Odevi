@@ -1,3 +1,5 @@
+using DefineX_Odeme_Sistemi_Forms_Odevi.DataAccess;
+
 namespace DefineX_Odeme_Sistemi_Forms_Odevi
 {
     internal static class Program

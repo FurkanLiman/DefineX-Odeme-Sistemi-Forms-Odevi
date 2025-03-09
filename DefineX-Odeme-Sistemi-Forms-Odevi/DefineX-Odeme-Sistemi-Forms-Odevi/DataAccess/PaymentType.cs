@@ -1,5 +1,4 @@
-﻿//using DefineX_Odeme_Sistemi_Forms_Odevi.Attributes;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

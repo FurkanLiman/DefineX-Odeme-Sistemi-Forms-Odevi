@@ -1,4 +1,3 @@
-//using DefineX_Odeme_Sistemi_Forms_Odevi.Attributes;
 using DefineX_Odeme_Sistemi_Forms_Odevi.DataAccess;
 using DefineX_Odeme_Sistemi_Forms_Odevi.Interfaces;
 

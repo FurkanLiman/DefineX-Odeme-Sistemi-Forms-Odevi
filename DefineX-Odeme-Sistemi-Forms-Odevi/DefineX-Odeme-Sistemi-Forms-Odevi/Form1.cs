@@ -1,6 +1,7 @@
-using DefineX_Odeme_Sistemi_Forms_Odevi.Attributes;
+//using DefineX_Odeme_Sistemi_Forms_Odevi.Attributes;
 using DefineX_Odeme_Sistemi_Forms_Odevi.DataAccess;
 using DefineX_Odeme_Sistemi_Forms_Odevi.Interfaces;
+
 
 namespace DefineX_Odeme_Sistemi_Forms_Odevi
 {
@@ -10,10 +11,6 @@ namespace DefineX_Odeme_Sistemi_Forms_Odevi
 
         private Dictionary<string, IOdeme> _odemeYontemleri;
 
-        
-        [ZorunluAlan]
-        public string OdemeYontemi;
-
         public Form1()
         {
             InitializeComponent();
@@ -22,58 +19,33 @@ namespace DefineX_Odeme_Sistemi_Forms_Odevi
 
         private void btnGonder_Click(object sender, EventArgs e)
         {
-            
+
             if (!ZorunluAlanAttribute.Dogrula(cmbOdemeTipi.SelectedItem))
             {
                 MessageBox.Show("Lütfen bir ödeme yöntemi seçiniz.g");
                 return;
             }
-            
-            if (!ZorunluAlanAttribute.Dogrula(txtTutar) || !SayiAlanAttribute.Dogrula(txtTutar))
+            if (!ZorunluAlanAttribute.Dogrula(txtTutar) || !SayiAlanAttribute.Dogrula(txtTutar) || !decimal.TryParse(txtTutar.Text, out decimal tutar))
             {
                 MessageBox.Show("Lütfen geçerli bir tutar giriniz.");
                 return;
             }
-            else
-            {
-                decimal tutar1;
-                decimal.TryParse(txtTutar.Text, out tutar1);
-                IOdeme yontem = _odemeYontemleri[cmbOdemeTipi.SelectedItem.ToString()];
-                string sonuc = yontem.OdemeYap(tutar1);
-                lblSonuc.Text = sonuc;
-            }
+            
+            IOdeme odemeYontemi = _odemeYontemleri[cmbOdemeTipi.SelectedItem.ToString()];
+            lblSonuc.Text = odemeYontemi.OdemeYap(tutar);
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            try
-            {
-
-                Dictionary<string, string> odemeYontemleriDb = _odemeRepo.GetOdemeYontemleri();
-
-                _odemeYontemleri = OdemeFabrikasi.OdemeYontemleriniGetir(odemeYontemleriDb);
-
-                cmbOdemeTipi.Items.AddRange(odemeYontemleriDb.Keys.ToArray());
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ödeme yöntemleri yüklenirken hata oluþtu: " + ex.Message);
-            }
-        }
-
 
         private void cmbOdemeTipi_DropDown(object sender, EventArgs e)
         {
             try
             {
+                List<PaymentType> odemeYontemleri = _odemeRepo.GetOdemeYontemleri();
 
-                Dictionary<string, string> odemeYontemleriDb = _odemeRepo.GetOdemeYontemleri();
-
-                _odemeYontemleri = OdemeFabrikasi.OdemeYontemleriniGetir(odemeYontemleriDb);
-
+                _odemeYontemleri =  OdemeFabrikasi.OdemeYontemleriniGetir(odemeYontemleri);
 
                 cmbOdemeTipi.Items.Clear();
-                cmbOdemeTipi.Items.AddRange(odemeYontemleriDb.Keys.ToArray());
+                
+                cmbOdemeTipi.Items.AddRange(_odemeYontemleri.Keys.ToArray());
 
             }
             catch (Exception ex)
@@ -84,12 +56,22 @@ namespace DefineX_Odeme_Sistemi_Forms_Odevi
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            if (!ZorunluAlanAttribute.Dogrula(txtYeniOdeme))
+            if (!ZorunluAlanAttribute.Dogrula(txtYeniOdemeIsim) || !ZorunluAlanAttribute.Dogrula(txtYeniOdemeDeger))
             {
                 MessageBox.Show("Lütfen bir ödeme yöntemi adý giriniz.");
                 return;
             }
-            _odemeRepo.AddOdemeYontemi(txtYeniOdeme.Text);
+
+            int result = _odemeRepo.AddOdemeYontemi(new PaymentType(txtYeniOdemeIsim.Text,txtYeniOdemeDeger.Text+"Odeme"));
+            if (result >= 0)
+            {
+                lblKaydet.Text = $"{result} yeni Ödeme Tipi eklendi.";
+            }
+            else
+            {
+                lblKaydet.Text = "Ödeme Tipi eklenirken hata oluþtu.";
+            }
         }
+
     }
 }

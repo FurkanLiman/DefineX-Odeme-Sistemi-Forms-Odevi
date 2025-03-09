@@ -1,4 +1,5 @@
-﻿using DefineX_Odeme_Sistemi_Forms_Odevi.Interfaces;
+﻿using DefineX_Odeme_Sistemi_Forms_Odevi.DataAccess;
+using DefineX_Odeme_Sistemi_Forms_Odevi.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -137,6 +138,38 @@ namespace DefineX_Odeme_Sistemi_Forms_Odevi.Models
 
                 if (instance != null)
                     odemeYontemleri.Add(odemeTypeName, instance);
+            }
+
+            return odemeYontemleri;
+        }
+        public static Dictionary<string,IOdeme> OdemeYontemleriniGetir(List<PaymentType> odemeTypes)
+        {
+            var odemeYontemleri = new Dictionary<string, IOdeme>();
+
+            var existingTypes = Assembly.GetExecutingAssembly().GetTypes()
+               .Where(t => t.IsClass && !t.IsAbstract && typeof(IOdeme).IsAssignableFrom(t))
+               .ToDictionary(t => t.Name, StringComparer.OrdinalIgnoreCase);
+
+            foreach (var odeme in odemeTypes)
+            {
+                IOdeme instance = null;
+                if (existingTypes.ContainsKey(odeme.DisplayValue))
+                {
+                    // Eğer tip mevcutsa, reflection ile instance oluştur.
+                    instance = Activator.CreateInstance(existingTypes[odeme.DisplayValue]) as IOdeme;
+                }
+                else
+                {
+                    // Eğer mevcut değilse, dinamik olarak tip oluştur ve kaydet.
+                    Type dynamicType = DinamikTypeOlustur(odeme.DisplayValue, odeme.DisplayMember);
+                    YeniTypeDosyala(odeme.DisplayValue, odeme.DisplayMember);
+
+                    // Dinamik olarak oluşturulan tipin derlenip assembly'ye yükle.
+                    instance = Activator.CreateInstance(dynamicType) as IOdeme;
+                }
+
+                if (instance != null)
+                    odemeYontemleri.Add(odeme.DisplayMember,instance);
             }
 
             return odemeYontemleri;

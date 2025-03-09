@@ -1,0 +1,11 @@
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\bin\Debug\net8.0\AttributesLibrary.deps.json
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\bin\Debug\net8.0\AttributesLibrary.dll
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\AttributesLibrary.csproj.ResolveComReference.cache
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\AttributesLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\AttributesLibrary.AssemblyInfoInputs.cache
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\AttributesLibrary.AssemblyInfo.cs
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\AttributesLibrary.csproj.CoreCompileInputs.cache
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\AttributesLibrary.sourcelink.json
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\AttributesLibrary.dll
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\refint\AttributesLibrary.dll
+C:\Users\liman\Desktop\DefineX\Odevler\1.HaftaOdev\AttributesLibrary\AttributesLibrary\obj\Debug\net8.0\ref\AttributesLibrary.dll

@@ -20,4 +20,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="AttributesLibrary">
+      <HintPath>..\..\AttributesLibrary\AttributesLibrary\bin\Debug\net8.0\AttributesLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

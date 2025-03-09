@@ -1,4 +1,6 @@
-﻿namespace DefineX_Odeme_Sistemi_Forms_Odevi
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DefineX_Odeme_Sistemi_Forms_Odevi
 {
     partial class Form1
     {
@@ -36,8 +38,11 @@
             lblSonuc = new Label();
             lblSnc = new Label();
             label1 = new Label();
-            txtYeniOdeme = new TextBox();
+            txtYeniOdemeIsim = new TextBox();
             btnKaydet = new Button();
+            label2 = new Label();
+            txtYeniOdemeDeger = new TextBox();
+            lblKaydet = new Label();
             SuspendLayout();
             // 
             // cmbOdemeTipi
@@ -113,24 +118,24 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Poppins Light", 9.857143F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(782, 115);
+            label1.Location = new Point(740, 112);
             label1.Name = "label1";
-            label1.Size = new Size(273, 42);
+            label1.Size = new Size(317, 42);
             label1.TabIndex = 7;
-            label1.Text = "Yeni Ödeme Yöntemi:";
+            label1.Text = "Yeni Ödeme Yöntemi Adı:";
             // 
-            // txtYeniOdeme
+            // txtYeniOdemeIsim
             // 
-            txtYeniOdeme.Font = new Font("Poppins", 9.857143F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtYeniOdeme.Location = new Point(1061, 112);
-            txtYeniOdeme.Name = "txtYeniOdeme";
-            txtYeniOdeme.Size = new Size(263, 42);
-            txtYeniOdeme.TabIndex = 8;
+            txtYeniOdemeIsim.Font = new Font("Poppins", 9.857143F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            txtYeniOdemeIsim.Location = new Point(1063, 112);
+            txtYeniOdemeIsim.Name = "txtYeniOdemeIsim";
+            txtYeniOdemeIsim.Size = new Size(263, 42);
+            txtYeniOdemeIsim.TabIndex = 8;
             // 
             // btnKaydet
             // 
             btnKaydet.Font = new Font("Poppins SemiBold", 11.1428576F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
-            btnKaydet.Location = new Point(976, 240);
+            btnKaydet.Location = new Point(990, 289);
             btnKaydet.Name = "btnKaydet";
             btnKaydet.Size = new Size(172, 67);
             btnKaydet.TabIndex = 9;
@@ -138,13 +143,44 @@
             btnKaydet.UseVisualStyleBackColor = true;
             btnKaydet.Click += btnKaydet_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Poppins Light", 9.857143F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label2.Location = new Point(710, 184);
+            label2.Name = "label2";
+            label2.Size = new Size(347, 42);
+            label2.TabIndex = 10;
+            label2.Text = "Yeni Ödeme Yöntemi Value:";
+            // 
+            // txtYeniOdemeDeger
+            // 
+            txtYeniOdemeDeger.Font = new Font("Poppins", 9.857143F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            txtYeniOdemeDeger.Location = new Point(1063, 184);
+            txtYeniOdemeDeger.Name = "txtYeniOdemeDeger";
+            txtYeniOdemeDeger.Size = new Size(263, 42);
+            txtYeniOdemeDeger.TabIndex = 11;
+            // 
+            // lblKaydet
+            // 
+            lblKaydet.AutoSize = true;
+            lblKaydet.Font = new Font("Poppins", 9.857143F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblKaydet.Location = new Point(976, 412);
+            lblKaydet.Name = "lblKaydet";
+            lblKaydet.Size = new Size(31, 42);
+            lblKaydet.TabIndex = 12;
+            lblKaydet.Text = "-";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1595, 646);
+            Controls.Add(lblKaydet);
+            Controls.Add(txtYeniOdemeDeger);
+            Controls.Add(label2);
             Controls.Add(btnKaydet);
-            Controls.Add(txtYeniOdeme);
+            Controls.Add(txtYeniOdemeIsim);
             Controls.Add(label1);
             Controls.Add(lblSnc);
             Controls.Add(lblSonuc);
@@ -155,14 +191,15 @@
             Controls.Add(cmbOdemeTipi);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
+        [ZorunluAlan]
         private ComboBox cmbOdemeTipi;
+        [ZorunluAlan]
+        [SayiAlan]
         private TextBox txtTutar;
         private Label lblYontem;
         private Label lblTutar;
@@ -170,7 +207,12 @@
         private Label lblSonuc;
         private Label lblSnc;
         private Label label1;
-        private TextBox txtYeniOdeme;
+        [ZorunluAlan]
+        private TextBox txtYeniOdemeIsim;
         private Button btnKaydet;
+        private Label label2;
+        [ZorunluAlan]
+        private TextBox txtYeniOdemeDeger;
+        private Label lblKaydet;
     }
 }
